@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           data => {
             if (data && data.user) {
               this.userInfoService.setUser(data.user);
-              // TODO Handle success
+              this.router.navigate(['dashboard']);
             }
           },
           error => {
