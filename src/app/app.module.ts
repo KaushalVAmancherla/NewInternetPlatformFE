@@ -9,9 +9,13 @@ import { HeadersInterceptor } from './shared/services/headers-interceptor.servic
 import { AppHttpInterceptor } from './shared/services/app-http-interceptor.service';
 import { UserInfoService } from './shared/services/user-info.service';
 
+import { AppComponent } from './app.component';
+import { ErrorComponent } from './shared/components/error/error.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
