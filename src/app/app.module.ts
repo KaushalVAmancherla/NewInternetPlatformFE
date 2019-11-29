@@ -11,11 +11,13 @@ import { UserInfoService } from './shared/services/user-info.service';
 
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './shared/components/error/error.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
