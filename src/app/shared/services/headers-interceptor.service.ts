@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { UserInfoService } from './user-info.service';
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(private userInfoService: UserInfoService) {
+  }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    const token = this.userInfoService.getUserToken();
+    if (token) {
+      headers = headers.append('Authorization', 'Token ' + token);
+    }
 
     const newRequest = request.clone({
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      })
-      // TODO Add headers
+      headers
     });
 
     return next.handle(newRequest);

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
+import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
@@ -18,13 +18,8 @@ export class AppHttpInterceptor implements HttpInterceptor {
             // TODO Handle success
           }
         }
-      }),
-      catchError((err: any) => {
-        if (err instanceof HttpErrorResponse) {
-          // TODO Handle errors
-        }
-        return of(err);
-      }));
+      })
+    );
   }
 
 }
