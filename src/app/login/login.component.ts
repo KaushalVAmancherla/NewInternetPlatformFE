@@ -5,8 +5,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { UserInfoService } from '../shared/services/user-info.service';
 import { LoginService } from './login.service';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
-import { faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { Utils } from '../shared/utils/Utils';
 
 @Component({
   selector: 'app-login',
@@ -79,6 +79,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           error => {
             this.msgErrorService = error;
           });
+
+    } else {
+      Utils.validateForm(this.loginForm);
     }
   }
 
