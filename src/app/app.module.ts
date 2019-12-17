@@ -15,6 +15,7 @@ import { ErrorComponent } from './shared/components/error/error.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NipHeaderComponent } from './nip-header/nip-header.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NipHeaderComponent } from './nip-header/nip-header.component';
     ErrorComponent,
     LoginComponent,
     DashboardComponent,
-    NipHeaderComponent
+    NipHeaderComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

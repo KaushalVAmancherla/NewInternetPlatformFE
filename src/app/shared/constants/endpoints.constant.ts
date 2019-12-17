@@ -1,3 +1,4 @@
 export const endpoints = {
-  login: '/api/users/login'
+  login: '/api/users/login',
+  signup: '/api/users/signup'
 };
