@@ -20,9 +20,10 @@ export class ErrorHttpInterceptor {
   private handleError(error) {
     let errorMessage = '';
     if (error instanceof HttpErrorResponse) {
-      errorMessage = `Error: ${error.error.message || 'Generic error'}`;
+      const message = error.error && error.error.errors && error.error.errors.message;
+      errorMessage = `Error: ${ message || 'An error occurred retrieving data. Please try later.'}`;
     } else {
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message || 'Generic error'}`;
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message || 'An error occurred retrieving data. Please try later.'}`;
     }
     console.error(errorMessage);
     return throwError(errorMessage);
