@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeadersInterceptor } from './shared/interceptors/headers-interceptor.service';
 import { AppHttpInterceptor } from './shared/interceptors/app-http-interceptor.service';
 import { ErrorHttpInterceptor } from './shared/interceptors/error-http-interceptor.service';
@@ -12,6 +13,7 @@ import { UserInfoService } from './shared/services/user-info.service';
 
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './shared/components/error/error.component';
+import { ModalComponent } from './shared/components/modal/modal.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NipHeaderComponent } from './nip-header/nip-header.component';
@@ -21,6 +23,7 @@ import { SignupComponent } from './signup/signup.component';
   declarations: [
     AppComponent,
     ErrorComponent,
+    ModalComponent,
     LoginComponent,
     DashboardComponent,
     NipHeaderComponent,
@@ -32,7 +35,8 @@ import { SignupComponent } from './signup/signup.component';
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbModule
   ],
   providers: [
     {

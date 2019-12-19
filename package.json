@@ -22,9 +22,9 @@
     "@fortawesome/angular-fontawesome": "~0.5.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "bootstrap": "^4.3.1",
     "core-js": "^3.4.2",
-    "jquery": "^3.4.1",
     "rxjs": "~6.5.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.10.2"
