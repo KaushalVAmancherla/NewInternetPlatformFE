@@ -1,13 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent } from '../shared/components/modal/modal.component';
 import { UserInfoService } from '../shared/services/user-info.service';
 import { SignupService } from './signup.service';
 import { takeUntil } from 'rxjs/operators';
 import { Utils} from '../shared/utils/Utils';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { MustMatchValidation } from '../shared/validators/must-match.validator';
+import { ModalConfig } from '../shared/models/modal-config';
 
 @Component({
   selector: 'app-signup',
@@ -21,16 +24,30 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   signupForm: FormGroup;
 
-  pswIcon = faEyeSlash;
+  pswIcon: IconDefinition = faEyeSlash;
 
   pswType: string = 'password';
 
   msgErrorService: string = '';
 
+  @ViewChild('registerationModal', { static: false }) private registrationModal: ModalComponent;
+
+  registerationModalOptions: ModalConfig = {
+    id: 'registerationModal',
+    title: 'Registration',
+    description: '',
+    icon:  faCheck,
+    iconColor: 'text-success',
+    okButtonLabel: 'Login',
+    okButtonClick: this.goToLogin,
+    closeButtonClick:  this.goToLogin,
+  };
+
   constructor(
     protected router: Router,
     private formBuilder: FormBuilder,
     private userInfoService: UserInfoService,
+    private modalService: NgbModal,
     private signupService: SignupService
   ) {
   }
@@ -98,7 +115,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         .subscribe(
           data => {
             if (data && data.data && data.data.message) {
-              // TODO Implement Registration successfully
+              this.registerationModalOptions.description = data.data.message;
+              this.registrationModal.open();
             }
           },
           error => {
@@ -112,6 +130,10 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   onReset() {
     this.signupForm.reset();
+  }
+
+  goToLogin() {
+    this.router.navigate(['login']);
   }
 
   get firstName() {

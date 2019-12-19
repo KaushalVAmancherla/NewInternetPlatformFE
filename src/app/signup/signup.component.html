@@ -180,4 +180,8 @@
     </div>
   </div>
 
+  <div class="container">
+    <app-modal #registerationModal [id]="registerationModalOptions.id" [title]="registerationModalOptions.title" [description]="registerationModalOptions.description" [icon]="registerationModalOptions.icon" [iconColor]="registerationModalOptions.iconColor" [okButtonLabel]="registerationModalOptions.okButtonLabel" (okButtonClick)="goToLogin()" (closeButtonClick)="goToLogin()"></app-modal>
+  </div>
+
 </div>
