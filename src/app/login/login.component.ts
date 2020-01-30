@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         .subscribe(
           data => {
             if (data && data.data && data.data.user) {
-              this.userInfoService.setUser(data.user);
+              this.userInfoService.setUser(data.data.user);
               this.router.navigate(['dashboard']);
             } else {
               this.msgErrorService = 'An error occurred retrieving data. Please try later.';
