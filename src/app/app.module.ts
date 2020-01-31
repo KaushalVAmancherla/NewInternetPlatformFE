@@ -10,6 +10,7 @@ import { HeadersInterceptor } from './shared/interceptors/headers-interceptor.se
 import { AppHttpInterceptor } from './shared/interceptors/app-http-interceptor.service';
 import { ErrorHttpInterceptor } from './shared/interceptors/error-http-interceptor.service';
 import { UserInfoService } from './shared/services/user-info.service';
+import { LoggedGuardService } from './shared/services/logged-guard.service';
 
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './shared/components/error/error.component';
@@ -56,7 +57,8 @@ import { HomeComponent } from './home/home.component';
       useClass: ErrorHttpInterceptor,
       multi: true
     },
-    UserInfoService
+    UserInfoService,
+    LoggedGuardService
   ],
   bootstrap: [AppComponent]
 })
