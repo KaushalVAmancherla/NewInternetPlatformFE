@@ -26,7 +26,7 @@ export class NipHeaderComponent implements OnInit {
 
   goToMyProfile() {
     if (this.userInfoService.getUser()) {
-      // TODO Implement profile page
+      this.router.navigate(['private/user-profile']);
     } else {
       this.router.navigate(['login']);
     }
