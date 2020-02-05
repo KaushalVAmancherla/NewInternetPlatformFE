@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoggedModule } from './private/logged.module';
 import { HeadersInterceptor } from './shared/interceptors/headers-interceptor.service';
 import { AppHttpInterceptor } from './shared/interceptors/app-http-interceptor.service';
 import { ErrorHttpInterceptor } from './shared/interceptors/error-http-interceptor.service';
@@ -16,7 +17,6 @@ import { AppComponent } from './app.component';
 import { ErrorComponent } from './shared/components/error/error.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { NipHeaderComponent } from './nip-header/nip-header.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
@@ -27,7 +27,6 @@ import { HomeComponent } from './home/home.component';
     ErrorComponent,
     ModalComponent,
     LoginComponent,
-    DashboardComponent,
     NipHeaderComponent,
     SignupComponent,
     HomeComponent
@@ -39,7 +38,8 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    LoggedModule
   ],
   providers: [
     {

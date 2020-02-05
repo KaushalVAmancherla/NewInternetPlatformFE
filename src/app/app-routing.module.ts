@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoggedGuardService } from './shared/services/logged-guard.service';
 
 const routes: Routes = [
@@ -25,8 +24,8 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'private',
+    loadChildren: './private/logged.module#LoggedModule',
     canActivate: [LoggedGuardService]
   }
 ];
