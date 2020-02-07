@@ -12,7 +12,7 @@
           <div class="card-body">
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
 
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="firstName">First name</label>
                   <input
@@ -24,7 +24,7 @@
                     placeholder="Enter first name"
                     [ngClass]="{'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched) && firstName.errors}"
                     required>
-                  <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
                     <p class="invalid-feedback d-block" *ngIf="firstName.errors.required">
                       First name is required.
                     </p>
@@ -35,7 +35,7 @@
                 </div>
               </div>
 
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="lastName">Last name</label>
                   <input
@@ -47,7 +47,7 @@
                     placeholder="Enter last name"
                     [ngClass]="{'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched) && lastName.errors}"
                     required>
-                  <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
                     <p class="invalid-feedback d-block" *ngIf="lastName.errors.required">
                       Last name is required.
                     </p>
@@ -58,7 +58,7 @@
                 </div>
               </div>
 
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="username">Username</label>
                   <input
@@ -70,7 +70,7 @@
                     placeholder="Enter username"
                     [ngClass]="{'is-invalid': username.invalid && (username.dirty || username.touched) && username.errors}"
                     required>
-                  <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">
                     <p class="invalid-feedback d-block" *ngIf="username.errors.required">
                       Username is required.
                     </p>
@@ -82,7 +82,7 @@
                 </div>
               </div>
 
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="email">Email address</label>
                   <input
@@ -94,7 +94,7 @@
                     placeholder="Enter email"
                     [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched) && email.errors}"
                     required>
-                  <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
                     <p class="invalid-feedback d-block" *ngIf="email.errors.required">
                       Email is required.
                     </p>
@@ -105,7 +105,7 @@
                 </div>
               </div>
 
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="password">Password</label>
                   <div class="input-group">
@@ -124,7 +124,7 @@
                       </span>
                     </div>
                   </div>
-                  <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
                     <p class="invalid-feedback d-block" *ngIf="password.errors.required">
                       Password is required.
                     </p>
@@ -135,7 +135,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="confirmPassword">Confirm password</label>
                   <div class="input-group">
@@ -154,7 +154,7 @@
                       </span>
                     </div>
                   </div>
-                  <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
                     <p class="invalid-feedback d-block" *ngIf="confirmPassword.errors.required">
                       Confirm password is required.
                     </p>
@@ -166,7 +166,7 @@
                 </div>
               </div>
 
-              <div class="row">
+              <div class="row pt-2">
                 <div class="col">
                   <button class="btn btn-primary mr-1">Register</button>
                   <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>

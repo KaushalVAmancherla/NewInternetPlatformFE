@@ -11,14 +11,14 @@
 
           <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="email">Email address</label>
                   <input type="email" class="form-control" name="email" id="email" formControlName="email"
                          placeholder="Enter email"
                          [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched) && email.errors}"
                          required>
-                  <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
                     <p class="invalid-feedback d-block" *ngIf="email.errors.required">
                       Email is required.
                     </p>
@@ -28,7 +28,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row form-group">
+              <div class="row form-group pb-3">
                 <div class="col">
                   <label for="password">Password</label>
                   <div class="input-group">
@@ -42,7 +42,7 @@
                       </span>
                     </div>
                   </div>
-                  <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                  <div class="nip-invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
                     <p class="invalid-feedback d-block" *ngIf="password.errors.required">
                       Password is required.
                     </p>
@@ -53,7 +53,7 @@
                 </div>
               </div>
 
-              <div class="row">
+              <div class="row pt-2">
                 <div class="col">
                   <button type="submit" class="btn btn-primary">Submit</button>
                   <button type="button" class="btn btn-link" (click)="forgotPassword()">Forgot your password?</button>
