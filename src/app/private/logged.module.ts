@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { InvestmentComponent } from './investment/investment.component';
@@ -40,6 +42,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    NgbModule,
     RouterModule.forChild(routes)
   ]
 })
