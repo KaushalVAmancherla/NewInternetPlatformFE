@@ -27,11 +27,11 @@
 
       <div class="nav-item dropdown">
         <div ngbDropdown display="dynamic" class="d-inline-block">
-          <fa-icon [icon]="faUser" class="fa-fw nav-link" id="dropdownBasic1" ngbDropdownToggle></fa-icon>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button (click)="goToMyProfile()" ngbDropdownItem>My Profile</button>
-            <button ngbDropdownItem>Settings</button>
-            <button ngbDropdownItem (click)="logout()">Logout</button>
+          <fa-icon [icon]="faUser" class="fa-fw nav-link" id="userMenu" ngbDropdownToggle></fa-icon>
+          <div ngbDropdownMenu aria-labelledby="userMenu">
+            <div *ngFor="let item of userMenu; trackBy: trackByMenu">
+              <button (click)="item.function.apply(this, [item])" ngbDropdownItem>{{item.label}}</button>
+            </div>
           </div>
         </div>
       </div>

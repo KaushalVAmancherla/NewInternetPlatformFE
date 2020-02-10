@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -11,10 +12,35 @@ export class UserInfoService {
    */
   private user: User;
 
+  /**
+   * Check if the user is logged
+   */
+  private isUserLoggedObs: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
   constructor() {
   }
 
-  public setUser(user: any) {
+  /**
+   * Check if the User is logged
+   * Return an Observable with true if the user is logged, false is not logged.
+   */
+  isUserLogged(): Observable<boolean> {
+    return this.isUserLoggedObs.asObservable();
+  }
+
+  /**
+   * Set User login
+   * @param isLogged: true is correctly logged; false is not properly logged.
+   */
+  setUserLogged(isLogged: boolean): void {
+    this.isUserLoggedObs.next(isLogged);
+  }
+
+  /**
+   * Set User info
+   * @param user data
+   */
+  public setUser(user: any): void {
     if (user) {
       this.user = {
         email: user.email,
@@ -24,6 +50,7 @@ export class UserInfoService {
     } else {
       this.user = null;
     }
+    this.setUserLogged(user ? true : false);
   }
 
   /**
