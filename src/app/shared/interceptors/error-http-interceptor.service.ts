@@ -3,6 +3,9 @@ import { HttpEvent, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+/**
+ * Intercept HTTP errors
+ */
 @Injectable({
   providedIn: 'root'
 })

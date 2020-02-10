@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../shared/components/modal/modal.component';
@@ -12,6 +12,9 @@ import { faEye, faEyeSlash, faCheck, IconDefinition } from '@fortawesome/free-so
 import { MustMatchValidation } from '../shared/validators/must-match.validator';
 import { ModalConfig } from '../shared/models/modal-config';
 
+/**
+ * User registration page
+ */
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -53,6 +56,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Set registration requirements
     this.signupForm = this.formBuilder.group({
       firstName: new FormControl('', {
         validators: [Validators.required, Validators.maxLength(45), Validators.pattern(Utils.CHARSET_NAME_REGEX)],
@@ -77,7 +81,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     });
   }
 
-  checkPasswords(group: FormGroup) {
+  checkPasswords(group: FormGroup): void {
     const password = group.controls.password.value;
     const confirmPassword = group.controls.confirmPassword.value;
     if (password === confirmPassword) {
@@ -93,12 +97,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.unsubscribe.unsubscribe();
   }
 
-  switchPsw() {
+  switchPsw(): void {
     this.pswType === 'text' ? this.pswType = 'password' : this.pswType = 'text';
     this.pswIcon === faEyeSlash ? this.pswIcon = faEye : this.pswIcon = faEyeSlash;
   }
 
-  onSubmit() {
+  /**
+   * Register a new User
+   */
+  onSubmit(): void {
     this.msgErrorService = null;
     if (this.signupForm.valid) {
       const user = {
@@ -128,15 +135,15 @@ export class SignupComponent implements OnInit, OnDestroy {
     }
   }
 
-  onReset() {
+  onReset(): void {
     this.signupForm.reset();
   }
 
-  goToLogin() {
+  goToLogin(): void {
     this.router.navigate(['login']);
   }
 
-  get firstName() {
+  get firstName(): AbstractControl {
     return this.signupForm.get('firstName');
   }
 
@@ -144,19 +151,19 @@ export class SignupComponent implements OnInit, OnDestroy {
     return this.signupForm.get('lastName');
   }
 
-  get username() {
+  get username(): AbstractControl {
     return this.signupForm.get('username');
   }
 
-  get email() {
+  get email(): AbstractControl {
     return this.signupForm.get('email');
   }
 
-  get password() {
+  get password(): AbstractControl {
     return this.signupForm.get('password');
   }
 
-  get confirmPassword() {
+  get confirmPassword(): AbstractControl {
     return this.signupForm.get('confirmPassword');
   }
 

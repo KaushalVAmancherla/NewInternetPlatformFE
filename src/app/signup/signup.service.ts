@@ -13,7 +13,19 @@ export class SignupService {
   constructor(private httpClient: HttpClient) {
   }
 
-  signup(user: any): Observable<any> {
+  /**
+   * Execute user registration
+   * @param user
+   */
+  signup(
+    user: {
+      firstName: string,
+      lastName: string,
+      username: string,
+      email: string,
+      password: string,
+      password_retype: string
+    }): Observable<any> {
     const url = this.baseUrl + endpoints.signup;
     return this.httpClient.post<JSON>(url, user);
   }

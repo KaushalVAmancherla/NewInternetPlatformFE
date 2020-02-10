@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -8,6 +8,9 @@ import { LoginService } from './login.service';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Utils } from '../shared/utils/Utils';
 
+/**
+ * User login page
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -49,15 +52,18 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.unsubscribe.unsubscribe();
   }
 
-  get password() {
+  get password(): AbstractControl {
     return this.loginForm.get('password');
   }
 
-  get email() {
+  get email(): AbstractControl {
     return this.loginForm.get('email');
   }
 
-  onSubmit() {
+  /**
+   * Do login user
+   */
+  onSubmit(): void {
     this.msgErrorService = null;
     if (this.loginForm.valid) {
       const user = {
@@ -87,12 +93,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  switchPsw() {
+  switchPsw(): void {
     this.pswType === 'text' ? this.pswType = 'password' : this.pswType = 'text';
     this.pswIcon === faEyeSlash ? this.pswIcon = faEye : this.pswIcon = faEyeSlash;
   }
 
-  forgotPassword() {
+  forgotPassword(): void {
     // TODO Implement forgot password
   }
 

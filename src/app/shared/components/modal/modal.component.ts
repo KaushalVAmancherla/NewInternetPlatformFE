@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild 
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Modal component
+ */
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -34,22 +37,34 @@ export class ModalComponent implements OnInit {
   ngOnInit() {
   }
 
-  onOk() {
+  /**
+   * Emit click for modal success button
+   */
+  onOk(): void {
     this.modalReference.close();
     this.okButtonClick.emit();
   }
 
-  onCancel() {
+  /**
+   * Cancel the modal
+   */
+  onCancel(): void {
     this.modalReference.close();
     this.cancelButtonClick.emit();
   }
 
-  onClose() {
+  /**
+   * Clode the modal
+   */
+  onClose(): void {
     this.modalReference.close();
     this.closeButtonClick.emit();
   }
 
-  public open() {
+  /**
+   * Open the modal
+   */
+  public open(): void {
     this.modalReference = this.modalService.open(this.nipModal, {ariaLabelledBy: 'modal-title'});
   }
 

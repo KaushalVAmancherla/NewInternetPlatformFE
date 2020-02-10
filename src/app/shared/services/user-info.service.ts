@@ -6,6 +6,9 @@ import { User } from '../models/user.model';
 })
 export class UserInfoService {
 
+  /**
+   * User info
+   */
   private user: User;
 
   constructor() {
@@ -23,19 +26,31 @@ export class UserInfoService {
     }
   }
 
-  public getUser() {
+  /**
+   * Get User info
+   */
+  public getUser(): User {
     return this.user;
   }
 
-  public getUserEmail() {
+  /**
+   * Get User email
+   */
+  public getUserEmail(): string {
     return this.user ? this.user.email : null;
   }
 
-  public getUserToken() {
+  /**
+   * Get User login Token
+   */
+  public getUserToken(): string {
     return this.user ? this.user.token : null;
   }
 
-  public getUserId() {
+  /**
+   * Get User ID
+   */
+  public getUserId(): string {
     return this.user ? this.user.id : null;
   }
 

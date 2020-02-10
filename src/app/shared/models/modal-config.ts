@@ -1,5 +1,8 @@
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Modal configuration skeleton
+ */
 export interface ModalConfig {
   id: string;
   title: string;

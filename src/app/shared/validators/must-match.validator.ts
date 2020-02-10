@@ -1,5 +1,11 @@
 import { FormGroup } from '@angular/forms';
 
+/**
+ * Match two input values
+ * @param controlName
+ * @param matchingControlName
+ * @constructor
+ */
 export function MustMatchValidation(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
     const control = formGroup.controls[controlName];

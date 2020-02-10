@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { UserInfoService } from '../shared/services/user-info.service';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * Header site
+ */
 @Component({
   selector: 'app-nip-header',
   templateUrl: './nip-header.component.html',
@@ -15,12 +18,16 @@ export class NipHeaderComponent implements OnInit {
   constructor(
     protected router: Router,
     private userInfoService: UserInfoService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
   }
 
-  search() {
+  /**
+   * Search in the site
+   */
+  search(): void {
     // TODO Implement search
   }
 
@@ -32,7 +39,10 @@ export class NipHeaderComponent implements OnInit {
     }
   }
 
-  logout() {
+  /**
+   * Perform user logout
+   */
+  logout(): void {
     // TODO Implement logout
     this.userInfoService.setUser(null);
     this.router.navigate(['home']);

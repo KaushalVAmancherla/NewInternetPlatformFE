@@ -14,9 +14,19 @@ export class LoginService {
   constructor(private httpClient: HttpClient) {
   }
 
-  login(user: any): Observable<any> {
+  /**
+   * Execute login user
+   * @param userData
+   */
+  login(
+    userData: {
+      user: {
+        email: string,
+        password: string
+      }
+    }): Observable<any> {
     const url = this.baseUrl + endpoints.login;
-    return this.httpClient.post<JSON>(url, user);
+    return this.httpClient.post<JSON>(url, userData);
   }
 
 }

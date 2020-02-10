@@ -3,6 +3,9 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } fr
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+/**
+ * App HTTP itnerceptor
+ */
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
 

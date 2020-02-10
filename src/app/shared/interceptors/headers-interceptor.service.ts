@@ -3,6 +3,9 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpHeaders } fro
 import { Observable } from 'rxjs';
 import { UserInfoService } from '../services/user-info.service';
 
+/**
+ * Add HTTP request headers
+ */
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
 
