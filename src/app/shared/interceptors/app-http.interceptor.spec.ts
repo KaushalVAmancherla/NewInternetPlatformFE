@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AppHttpInterceptor } from './app-http-interceptor.service';
+import { AppHttpInterceptor } from './app-http.interceptor';
 
 describe('AppHttpInterceptorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

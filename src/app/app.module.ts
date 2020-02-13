@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoggedModule } from './private/logged.module';
-import { HeadersInterceptor } from './shared/interceptors/headers-interceptor.service';
-import { AppHttpInterceptor } from './shared/interceptors/app-http-interceptor.service';
-import { ErrorHttpInterceptor } from './shared/interceptors/error-http-interceptor.service';
+
+import { HeadersInterceptor } from './shared/interceptors/headers.interceptor';
+import { AppHttpInterceptor } from './shared/interceptors/app-http.interceptor';
+import { ErrorHttpInterceptor } from './shared/interceptors/error-http.interceptor';
 import { UserInfoService } from './shared/services/user-info.service';
 import { LoggedGuardService } from './shared/services/logged-guard.service';
 
