@@ -16,6 +16,8 @@ import { UserInfoService } from './shared/services/user-info.service';
 import { LoggedGuardService } from './shared/services/logged-guard.service';
 import { LoaderService } from './shared/services/loader.service';
 
+import { LabelsPipe } from './shared/pipes/labels.pipe';
+
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './shared/components/error/error.component';
 import { ModalComponent } from './shared/components/modal/modal.component';
@@ -34,7 +36,8 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     NipHeaderComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    LabelsPipe
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { HomeComponent } from './home/home.component';
     },
     UserInfoService,
     LoggedGuardService,
-    LoaderService
+    LoaderService,
+    LabelsPipe
   ],
   bootstrap: [AppComponent]
 })
