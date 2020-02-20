@@ -105,7 +105,7 @@
                 </div>
               </div>
 
-              <div class="row form-group pb-3">
+              <div class="row form-group pb-3" [ngClass]="{'pb-5': (password.invalid && (password.dirty || password.touched) && !password.errors.required)}">
                 <div class="col">
                   <label for="password">Password</label>
                   <div class="input-group">
@@ -135,6 +135,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="row form-group pb-3">
                 <div class="col">
                   <label for="confirmPassword">Confirm password</label>
