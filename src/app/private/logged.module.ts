@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { PipeModule } from '../shared/pipes/pipe.module';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { InvestmentComponent } from './investment/investment.component';
@@ -44,6 +46,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     NgbModule,
+    PipeModule,
     RouterModule.forChild(routes)
   ]
 })

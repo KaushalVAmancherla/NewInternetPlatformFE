@@ -6,17 +6,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared/shared.module';
 import { LoggedModule } from './private/logged.module';
-
-import { LoaderInterceptor } from './shared/interceptors/loader.interceptor';
-import { HeadersInterceptor } from './shared/interceptors/headers.interceptor';
-import { AppHttpInterceptor } from './shared/interceptors/app-http.interceptor';
-import { ErrorHttpInterceptor } from './shared/interceptors/error-http.interceptor';
-import { UserInfoService } from './shared/services/user-info.service';
-import { LoggedGuardService } from './shared/services/logged-guard.service';
-import { LoaderService } from './shared/services/loader.service';
-
-import { LabelsPipe } from './shared/pipes/labels.pipe';
 
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './shared/components/error/error.component';
@@ -36,8 +27,7 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     NipHeaderComponent,
     SignupComponent,
-    HomeComponent,
-    LabelsPipe
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -47,33 +37,10 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     FontAwesomeModule,
     NgbModule,
+    SharedModule,
     LoggedModule
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HeadersInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AppHttpInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorHttpInterceptor,
-      multi: true
-    },
-    UserInfoService,
-    LoggedGuardService,
-    LoaderService,
-    LabelsPipe
   ],
   bootstrap: [AppComponent]
 })
