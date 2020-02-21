@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from '../../shared/components/base/base.component';
+import { UserInfoService } from '../../shared/services/user-info.service';
+import { UserProfileLabels } from './user-profile.labels';
 
 /**
  * User profile page
@@ -8,12 +11,16 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent extends BaseComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    protected userInfoService: UserInfoService
+  ) {
+    super(userInfoService);
   }
 
   ngOnInit() {
+    this.labelsFile = UserProfileLabels;
   }
 
 }

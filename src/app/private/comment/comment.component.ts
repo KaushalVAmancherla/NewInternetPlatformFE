@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from '../../shared/components/base/base.component';
+import { UserInfoService } from '../../shared/services/user-info.service';
+import { CommentLabels } from './comment.labels';
 
 /**
  * Comment page allows the user to comment on posts on the Platform as well as posts/articles/etc. on external webpages. There will be 3
@@ -13,12 +16,16 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent extends BaseComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    protected userInfoService: UserInfoService
+  ) {
+    super(userInfoService);
   }
 
   ngOnInit() {
+    this.labelsFile = CommentLabels;
     // TODO Implment Comment component
   }
 

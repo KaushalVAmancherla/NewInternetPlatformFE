@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { UserInfoService } from './shared/services/user-info.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
+
+  constructor(
+    protected userInfoService: UserInfoService
+  ) {
+    // TODO Implement language settings
+    this.userInfoService.language = 'EN';
+  }
+
 }

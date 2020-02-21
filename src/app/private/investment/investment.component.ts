@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from '../../shared/components/base/base.component';
+import { UserInfoService } from '../../shared/services/user-info.service';
+import { InvestmentLabels } from './investment.labels';
 
 /**
  * Investment page allow the user to determine the relative importance of all the categories/topics on the platform. It is called
@@ -11,12 +14,16 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './investment.component.html',
   styleUrls: ['./investment.component.scss']
 })
-export class InvestmentComponent implements OnInit {
+export class InvestmentComponent extends BaseComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    protected userInfoService: UserInfoService
+  ) {
+    super(userInfoService);
   }
 
   ngOnInit() {
+    this.labelsFile = InvestmentLabels;
     // TODO Implment Investment component
   }
 

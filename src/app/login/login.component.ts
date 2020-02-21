@@ -3,8 +3,11 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { BaseComponent } from '../shared/components/base/base.component';
 import { UserInfoService } from '../shared/services/user-info.service';
 import { LoginService } from './login.service';
+import { LabelsPipe } from '../shared/pipes/labels/labels.pipe';
+import { LoginLabels } from './login.labels';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Utils } from '../shared/utils/Utils';
 
@@ -17,7 +20,7 @@ import { Utils } from '../shared/utils/Utils';
   styleUrls: ['./login.component.scss'],
   providers: [LoginService]
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
 
   private unsubscribe: Subject<void> = new Subject<void>();
 
@@ -32,12 +35,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     protected router: Router,
     private formBuilder: FormBuilder,
-    private userInfoService: UserInfoService,
-    private loginService: LoginService
+    protected userInfoService: UserInfoService,
+    private loginService: LoginService,
+    private labelsPipe: LabelsPipe
   ) {
+    super(userInfoService);
   }
 
   ngOnInit() {
+    this.labelsFile = LoginLabels;
+
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -81,7 +88,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               this.userInfoService.setUser(data.data.user);
               this.router.navigate(['private/dashboard']);
             } else {
-              this.msgErrorService = 'An error occurred retrieving data. Please try later.';
+              this.msgErrorService = this.labelsPipe.transform('genericServiceError', 'LABELS', this.language, this.commonLabels);
             }
           },
           error => {

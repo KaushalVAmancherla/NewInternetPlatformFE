@@ -3,7 +3,9 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Signup</div>
+          <div class="card-header">
+            {{'signup' | labels: 'LABELS' : language : labelsFile}}
+          </div>
 
           <div class="card-body" *ngIf="msgErrorService">
             <app-error [errorMessage]="msgErrorService"></app-error>
@@ -14,22 +16,22 @@
 
               <div class="row form-group pb-3">
                 <div class="col">
-                  <label for="firstName">First name</label>
+                  <label for="firstName">{{'firstName' | labels: 'LABELS' : language : labelsFile}}</label>
                   <input
                     type="text"
                     class="form-control"
                     name="firstName"
                     id="firstName"
                     formControlName="firstName"
-                    placeholder="Enter first name"
+                    placeholder="{{'insertFirstName' | labels: 'LABELS' : language : labelsFile}}"
                     [ngClass]="{'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched) && firstName.errors}"
                     required>
                   <div class="nip-invalid-feedback" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
                     <p class="invalid-feedback d-block" *ngIf="firstName.errors.required">
-                      First name is required.
+                      {{'firstNameRequired' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                     <p class="invalid-feedback d-block" *ngIf="firstName.invalid && !firstName.errors.required">
-                      First name is invalid.
+                      {{'firstNameInvalid' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                   </div>
                 </div>
@@ -37,22 +39,22 @@
 
               <div class="row form-group pb-3">
                 <div class="col">
-                  <label for="lastName">Last name</label>
+                  <label for="lastName">{{'lastName' | labels: 'LABELS' : language : labelsFile}}</label>
                   <input
                     type="text"
                     class="form-control"
                     name="lastName"
                     id="lastName"
                     formControlName="lastName"
-                    placeholder="Enter last name"
+                    placeholder="{{'insertLastName' | labels: 'LABELS' : language : labelsFile}}"
                     [ngClass]="{'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched) && lastName.errors}"
                     required>
                   <div class="nip-invalid-feedback" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
                     <p class="invalid-feedback d-block" *ngIf="lastName.errors.required">
-                      Last name is required.
+                      {{'lastNameRequired' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                     <p class="invalid-feedback d-block" *ngIf="lastName.invalid && !lastName.errors.required">
-                      Last name is invalid.
+                      {{'lastNameInvalid' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                   </div>
                 </div>
@@ -60,23 +62,22 @@
 
               <div class="row form-group pb-3">
                 <div class="col">
-                  <label for="username">Username</label>
+                  <label for="username">{{'username' | labels: 'LABELS' : language : labelsFile}}</label>
                   <input
                     type="text"
                     class="form-control"
                     name="username"
                     id="username"
                     formControlName="username"
-                    placeholder="Enter username"
+                    placeholder="{{'insertUsername' | labels: 'LABELS' : language : labelsFile}}"
                     [ngClass]="{'is-invalid': username.invalid && (username.dirty || username.touched) && username.errors}"
                     required>
                   <div class="nip-invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">
                     <p class="invalid-feedback d-block" *ngIf="username.errors.required">
-                      Username is required.
+                      {{'usernameRequired' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                     <p class="invalid-feedback d-block" *ngIf="username.invalid && !username.errors.required">
-                      Your username needs to be between 6 and 16 characters long and special characters are not
-                      permitted.
+                      {{'usernameInvalid' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                   </div>
                 </div>
@@ -84,22 +85,22 @@
 
               <div class="row form-group pb-3">
                 <div class="col">
-                  <label for="email">Email address</label>
+                  <label for="email">{{'emailAddress' | labels: 'LABELS' : language : labelsFile}}</label>
                   <input
                     type="email"
                     class="form-control"
                     name="email"
                     id="email"
                     formControlName="email"
-                    placeholder="Enter email"
+                    placeholder="{{'insertEmailAddress' | labels: 'LABELS' : language : labelsFile}}"
                     [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched) && email.errors}"
                     required>
                   <div class="nip-invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">
                     <p class="invalid-feedback d-block" *ngIf="email.errors.required">
-                      Email is required.
+                      {{'requiredEmailAddress' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                     <p class="invalid-feedback d-block" *ngIf="email.invalid && !email.errors.required">
-                      Email is invalid.
+                      {{'invalidEmailAddress' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                   </div>
                 </div>
@@ -107,7 +108,7 @@
 
               <div class="row form-group pb-3" [ngClass]="{'pb-5': (password.invalid && (password.dirty || password.touched) && !password.errors.required)}">
                 <div class="col">
-                  <label for="password">Password</label>
+                  <label for="password">{{'password' | labels: 'LABELS' : language : labelsFile}}</label>
                   <div class="input-group">
                     <input
                       [type]="pswType"
@@ -115,7 +116,7 @@
                       name="password"
                       id="password"
                       formControlName="password"
-                      placeholder="Enter password"
+                      placeholder="{{'insertPassword' | labels: 'LABELS' : language : labelsFile}}"
                       [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched) && password.errors}"
                       required>
                     <div class="input-group-append">
@@ -126,11 +127,10 @@
                   </div>
                   <div class="nip-invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">
                     <p class="invalid-feedback d-block" *ngIf="password.errors.required">
-                      Password is required.
+                      {{'requiredPassword' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                     <p class="invalid-feedback d-block" *ngIf="password.invalid && !password.errors.required">
-                      Your password needs contain 8 alpha-numeric characters long and for security it must contain at
-                      least one uppercase, one number, and one special character.
+                      {{'invalidPassword' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                   </div>
                 </div>
@@ -138,7 +138,7 @@
 
               <div class="row form-group pb-3">
                 <div class="col">
-                  <label for="confirmPassword">Confirm password</label>
+                  <label for="confirmPassword">{{'confirmPassword' | labels: 'LABELS' : language : labelsFile}}</label>
                   <div class="input-group">
                     <input
                       [type]="pswType"
@@ -146,7 +146,7 @@
                       name="confirmPassword"
                       id="confirmPassword"
                       formControlName="confirmPassword"
-                      placeholder="Enter confirm password"
+                      placeholder="{{'insertConfirmPassword' | labels: 'LABELS' : language : labelsFile}}"
                       [ngClass]="{'is-invalid': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched) && confirmPassword.errors}"
                       required>
                     <div class="input-group-append">
@@ -157,11 +157,11 @@
                   </div>
                   <div class="nip-invalid-feedback" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
                     <p class="invalid-feedback d-block" *ngIf="confirmPassword.errors.required">
-                      Confirm password is required.
+                      {{'requiredConfirmPassword' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                     <p class="invalid-feedback d-block"
                        *ngIf="confirmPassword.errors?.notMatch && !confirmPassword.errors.required">
-                      Confirm password doesn't match Password.
+                      {{'invalidConfirmPassword' | labels: 'LABELS' : language : labelsFile}}
                     </p>
                   </div>
                 </div>
@@ -169,8 +169,8 @@
 
               <div class="row pt-2">
                 <div class="col">
-                  <button class="btn btn-primary mr-1">Register</button>
-                  <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                  <button class="btn btn-primary mr-1">{{'register' | labels: 'LABELS' : language : labelsFile}}</button>
+                  <button class="btn btn-secondary" type="reset" (click)="onReset()">{{'cancel' | labels: 'LABELS' : language : labelsFile}}</button>
                 </div>
               </div>
             </form>

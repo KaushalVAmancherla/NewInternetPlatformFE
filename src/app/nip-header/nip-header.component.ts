@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../shared/components/base/base.component';
 import { UserInfoService } from '../shared/services/user-info.service';
+import { LabelsPipe } from '../shared/pipes/labels/labels.pipe';
+import { NipHeaderLabels } from './nip-header.labels';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { MenuItem } from '../shared/models/menu-item';
 
@@ -12,7 +15,7 @@ import { MenuItem } from '../shared/models/menu-item';
   templateUrl: './nip-header.component.html',
   styleUrls: ['./nip-header.component.scss']
 })
-export class NipHeaderComponent implements OnInit {
+export class NipHeaderComponent extends BaseComponent implements OnInit {
 
   faUser = faUser;
 
@@ -23,14 +26,18 @@ export class NipHeaderComponent implements OnInit {
 
   constructor(
     protected router: Router,
-    private userInfoService: UserInfoService
+    protected userInfoService: UserInfoService,
+    private labelsPipe: LabelsPipe
   ) {
+    super(userInfoService);
   }
 
   ngOnInit() {
-    this.userInfoService.isUserLogged().subscribe(isLogged => {
-      this.setUserMenu();
-    });
+    this.labelsFile = NipHeaderLabels;
+    this.userInfoService.isUserLogged()
+      .subscribe(isLogged => {
+        this.setUserMenu();
+      });
   }
 
   /**
@@ -49,7 +56,7 @@ export class NipHeaderComponent implements OnInit {
 
     items.push({
       id: 'my-profile',
-      label: 'My Profile',
+      label: this.labelsPipe.transform('myProfile', 'LABELS', this.language, this.labelsFile),
       function: this.goToMyProfile,
       link: 'private/user-profile'
     });
@@ -57,13 +64,13 @@ export class NipHeaderComponent implements OnInit {
     if (this.userInfoService.getUser()) {
       items.push({
         id: 'settings',
-        label: 'Settings',
+        label: this.labelsPipe.transform('settings', 'LABELS', this.language, this.labelsFile),
         function: this.goToLink,
         link: 'home' // TODO Set router link
       });
       items.push({
         id: 'logout',
-        label: 'Logout',
+        label: this.labelsPipe.transform('logout', 'LABELS', this.language, this.labelsFile),
         function: this.logout,
         link: 'home'
       });

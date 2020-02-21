@@ -10,12 +10,17 @@ export class UserInfoService {
   /**
    * User info
    */
-  private user: User;
+  private _user: User;
+
+  /**
+   * User language
+   */
+  private _language: string;
 
   /**
    * Check if the user is logged
    */
-  private isUserLoggedObs: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private _isUserLoggedObs: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor() {
   }
@@ -24,31 +29,31 @@ export class UserInfoService {
    * Check if the User is logged
    * Return an Observable with true if the user is logged, false is not logged.
    */
-  isUserLogged(): Observable<boolean> {
-    return this.isUserLoggedObs.asObservable();
+  public isUserLogged(): Observable<boolean> {
+    return this._isUserLoggedObs.asObservable();
   }
 
   /**
    * Set User login
    * @param isLogged: true is correctly logged; false is not properly logged.
    */
-  setUserLogged(isLogged: boolean): void {
-    this.isUserLoggedObs.next(isLogged);
+  public setUserLogged(isLogged: boolean) {
+    this._isUserLoggedObs.next(isLogged);
   }
 
   /**
    * Set User info
    * @param user data
    */
-  public setUser(user: any): void {
+  public setUser(user: any) {
     if (user) {
-      this.user = {
+      this._user = {
         email: user.email,
         token: user.token,
         id: user._id
       };
     } else {
-      this.user = null;
+      this._user = null;
     }
     this.setUserLogged(user ? true : false);
   }
@@ -57,28 +62,36 @@ export class UserInfoService {
    * Get User info
    */
   public getUser(): User {
-    return this.user;
+    return this._user;
   }
 
   /**
    * Get User email
    */
   public getUserEmail(): string {
-    return this.user ? this.user.email : null;
+    return this._user ? this._user.email : null;
   }
 
   /**
    * Get User login Token
    */
   public getUserToken(): string {
-    return this.user ? this.user.token : null;
+    return this._user ? this._user.token : null;
   }
 
   /**
    * Get User ID
    */
   public getUserId(): string {
-    return this.user ? this.user.id : null;
+    return this._user ? this._user.id : null;
+  }
+
+  public get language(): string {
+    return this._language;
+  }
+
+  public set language(value: string) {
+    this._language = value;
   }
 
 }

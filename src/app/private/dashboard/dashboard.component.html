@@ -3,20 +3,20 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Welcome</div>
+          <div class="card-header">
+            {{'title' | labels: 'LABELS' : language : labelsFile}}
+          </div>
 
           <div class="card-body">
-            <p>This page will have a customized user feed, where the user will be able to decide what information from
-              the platform should be displayed (for example, latest news/politics/science development/culture/etc.</p>
-            <!-- TODO Remove page info -->
+            <p>{{'pageDescription' | labels: 'LABELS' : language : labelsFile}}</p>
           </div>
 
           <div class="card-body">
             <div class="py-1">
               <div class="text-center">
-                <button type="button" class="btn btn-outline-primary m-1" routerLink="/private/investment">Investment</button>
-                <button type="button" class="btn btn-outline-primary m-1"v routerLink="/private/post">Post</button>
-                <button type="button" class="btn btn-outline-primary m-1" routerLink="/private/comment">Comment</button>
+                <button type="button" class="btn btn-outline-primary m-1" routerLink="/private/investment">{{'investment' | labels: 'LABELS' : language : labelsFile}}</button>
+                <button type="button" class="btn btn-outline-primary m-1" routerLink="/private/post">{{'post' | labels: 'LABELS' : language : labelsFile}}</button>
+                <button type="button" class="btn btn-outline-primary m-1" routerLink="/private/comment">{{'comment' | labels: 'LABELS' : language : labelsFile}}</button>
               </div>
             </div>
           </div>

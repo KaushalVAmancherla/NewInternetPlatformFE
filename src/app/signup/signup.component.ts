@@ -3,8 +3,11 @@ import { Subject } from 'rxjs';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BaseComponent } from '../shared/components/base/base.component';
 import { ModalComponent } from '../shared/components/modal/modal.component';
 import { UserInfoService } from '../shared/services/user-info.service';
+import { LabelsPipe } from '../shared/pipes/labels/labels.pipe';
+import { SignupLabels } from './signup.labels';
 import { SignupService } from './signup.service';
 import { takeUntil } from 'rxjs/operators';
 import { Utils} from '../shared/utils/Utils';
@@ -21,7 +24,7 @@ import { ModalConfig } from '../shared/models/modal-config';
   styleUrls: ['./signup.component.scss'],
   providers: [SignupService]
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SignupComponent extends BaseComponent implements OnInit, OnDestroy {
 
   private unsubscribe: Subject<void> = new Subject<void>();
 
@@ -35,27 +38,33 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   @ViewChild('registerationModal', { static: false }) private registrationModal: ModalComponent;
 
-  registerationModalOptions: ModalConfig = {
-    id: 'registerationModal',
-    title: 'Registration',
-    description: '',
-    icon:  faCheck,
-    iconColor: 'text-success',
-    okButtonLabel: 'Login',
-    okButtonClick: this.goToLogin,
-    closeButtonClick:  this.goToLogin,
-  };
+  registerationModalOptions: ModalConfig;
 
   constructor(
     protected router: Router,
     private formBuilder: FormBuilder,
-    private userInfoService: UserInfoService,
+    protected userInfoService: UserInfoService,
     private modalService: NgbModal,
-    private signupService: SignupService
+    private signupService: SignupService,
+    private labelsPipe: LabelsPipe
   ) {
+    super(userInfoService);
   }
 
   ngOnInit() {
+    this.labelsFile = SignupLabels;
+
+    this.registerationModalOptions = {
+      id: 'registerationModal',
+        title: this.labelsPipe.transform('registrationModal', 'LABELS', this.language, this.labelsFile),
+        description: this.labelsPipe.transform('descriptionModal', 'LABELS', this.language, this.labelsFile),
+        icon:  faCheck,
+        iconColor: 'text-success',
+        okButtonLabel: this.labelsPipe.transform('okButtonModal', 'LABELS', this.language, this.labelsFile),
+        okButtonClick: this.goToLogin,
+        closeButtonClick:  this.goToLogin,
+    };
+
     // Set registration requirements
     this.signupForm = this.formBuilder.group({
       firstName: new FormControl('', {
