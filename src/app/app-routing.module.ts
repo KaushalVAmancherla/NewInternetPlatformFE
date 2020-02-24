@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'private',
-    loadChildren: './private/logged.module#LoggedModule',
+    loadChildren: () => import('./private/logged.module').then(m => m.LoggedModule),
     canActivate: [LoggedGuardService]
   }
 ];
