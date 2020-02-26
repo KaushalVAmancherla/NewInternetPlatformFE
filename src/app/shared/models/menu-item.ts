@@ -4,6 +4,6 @@
 export interface MenuItem {
   id: string;
   label: string;
-  function: (...args: any[]) => void;
+  function: (...args: any) => void;
   link: string;
 }

@@ -30,7 +30,7 @@
           <fa-icon [icon]="faUser" class="fa-fw nav-link" id="userMenu" ngbDropdownToggle></fa-icon>
           <div ngbDropdownMenu aria-labelledby="userMenu">
             <div *ngFor="let item of userMenu; trackBy: trackByMenu">
-              <button (click)="item.function.apply(this, [item])" ngbDropdownItem>{{item.label}}</button>
+              <button  (click)="item.function(item)" ngbDropdownItem>{{item.label}}</button>
             </div>
           </div>
         </div>

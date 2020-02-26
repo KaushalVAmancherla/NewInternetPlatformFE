@@ -57,7 +57,7 @@ export class NipHeaderComponent extends BaseComponent implements OnInit {
     items.push({
       id: 'my-profile',
       label: this.labelsPipe.transform('myProfile', 'LABELS', this.language, this.labelsFile),
-      function: this.goToMyProfile,
+      function: this.goToMyProfile.bind(this),
       link: 'private/user-profile'
     });
 
@@ -65,13 +65,13 @@ export class NipHeaderComponent extends BaseComponent implements OnInit {
       items.push({
         id: 'settings',
         label: this.labelsPipe.transform('settings', 'LABELS', this.language, this.labelsFile),
-        function: this.goToLink,
+        function: this.goToLink.bind(this),
         link: 'home' // TODO Set router link
       });
       items.push({
         id: 'logout',
         label: this.labelsPipe.transform('logout', 'LABELS', this.language, this.labelsFile),
-        function: this.logout,
+        function: this.logout.bind(this),
         link: 'home'
       });
     }
@@ -79,11 +79,11 @@ export class NipHeaderComponent extends BaseComponent implements OnInit {
     this.userMenu = items;
   }
 
-  trackByMenu(index, item): string {
+  trackByMenu(index, item: MenuItem): string {
     return item.id;
   }
 
-  goToMyProfile(item): void {
+  goToMyProfile(item: MenuItem): void {
     if (this.userInfoService.getUser()) {
       this.router.navigate([item.link]);
     } else {
@@ -91,7 +91,7 @@ export class NipHeaderComponent extends BaseComponent implements OnInit {
     }
   }
 
-  goToLink(item: any): void {
+  goToLink(item: MenuItem): void {
     this.router.navigate([item.link]);
   }
 
