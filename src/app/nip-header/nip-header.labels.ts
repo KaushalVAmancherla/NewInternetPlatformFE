@@ -5,6 +5,8 @@ export class NipHeaderLabels {
       nip: 'New Internet Platform',
       home: 'Home',
       dashboard: 'Dashboard',
+      signup: 'Sign Up',
+      login: 'Login',      
       search: 'Search',
       myProfile: 'My Profile',
       settings: 'Settings',

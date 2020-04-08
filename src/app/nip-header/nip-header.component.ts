@@ -7,6 +7,8 @@ import { NipHeaderLabels } from './nip-header.labels';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { MenuItem } from '../shared/models/menu-item';
 
+import { FlashMessagesService } from 'angular2-flash-messages';
+
 /**
  * Header site
  */
@@ -27,7 +29,8 @@ export class NipHeaderComponent extends BaseComponent implements OnInit {
   constructor(
     protected router: Router,
     protected userInfoService: UserInfoService,
-    private labelsPipe: LabelsPipe
+    private labelsPipe: LabelsPipe,
+    private flashMessage: FlashMessagesService
   ) {
     super(userInfoService);
   }

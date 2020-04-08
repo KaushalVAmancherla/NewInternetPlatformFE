@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { endpoints } from '../shared/constants/endpoints.constant';
 
+import { User } from '../models/user';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,17 +19,9 @@ export class SignupService {
    * Execute user registration
    * @param user
    */
-  signup(
-    user: {
-      firstName: string,
-      lastName: string,
-      username: string,
-      email: string,
-      password: string,
-      password_retype: string
-    }): Observable<any> {
-    const url = this.baseUrl + endpoints.signup;
-    return this.httpClient.post<JSON>(url, user);
+  signup(user: User): Observable<any> {
+    return this.httpClient.post("http://localhost:8000/users/signup", user);
   }
 
 }
+ 

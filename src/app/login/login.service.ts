@@ -5,6 +5,8 @@ import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { endpoints } from '../shared/constants/endpoints.constant';
 
+import { Userlog } from '../models/userlog';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,17 +18,10 @@ export class LoginService {
 
   /**
    * Execute login user
-   * @param userData
+   * @param userlog
    */
-  login(
-    userData: {
-      user: {
-        email: string,
-        password: string
-      }
-    }): Observable<any> {
-    const url = this.baseUrl + endpoints.login;
-    return this.httpClient.post<JSON>(url, userData);
+  login(userlog: Userlog): Observable<any> {
+    return this.httpClient.post("http://localhost:8000/users/login", userlog);
   }
 
 }

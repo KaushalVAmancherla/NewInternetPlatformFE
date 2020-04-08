@@ -1,3 +1,4 @@
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,6 +11,9 @@ import { LabelsPipe } from '../shared/pipes/labels/labels.pipe';
 import { LoginLabels } from './login.labels';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Utils } from '../shared/utils/Utils';
+
+import { first } from 'rxjs/operators';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 /**
  * User login page
@@ -37,7 +41,8 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     protected userInfoService: UserInfoService,
     private loginService: LoginService,
-    private labelsPipe: LabelsPipe
+    private labelsPipe: LabelsPipe,
+    private flashMessage: FlashMessagesService
   ) {
     super(userInfoService);
   }
@@ -71,32 +76,22 @@ export class LoginComponent extends BaseComponent implements OnInit, OnDestroy {
    * Do login user
    */
   onSubmit(): void {
-    this.msgErrorService = null;
+
     if (this.loginForm.valid) {
-      const user = {
-        user: {
-          email: this.loginForm.value.email,
-          password: this.loginForm.value.password
-        }
-      };
-
-      this.loginService.login(user)
-        .pipe(takeUntil(this.unsubscribe))
-        .subscribe(
-          data => {
-            if (data && data.data && data.data.user) {
-              this.userInfoService.setUser(data.data.user);
-              this.router.navigate(['private/dashboard']);
-            } else {
-              this.msgErrorService = this.labelsPipe.transform('genericServiceError', 'LABELS', this.language, this.commonLabels);
-            }
-          },
-          error => {
-            this.msgErrorService = error;
-          });
-
+      this.loginService.login(this.loginForm.value)
+        .pipe(first())
+            .subscribe(
+              data => {
+                  this.flashMessage.show('You are logged in', {cssClass: 'alert-success', timeout: 3000});
+                  this.router.navigate(['/dashboard']);
+                
+            },
+              error => {
+                this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+      });
+    
     } else {
-      Utils.validateForm(this.loginForm);
+     this.flashMessage.show('Invalid Form - Incorrect Field(s)', {cssClass: 'alert-danger', timeout: 3000});    
     }
   }
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +18,10 @@ import { LoginComponent } from './login/login.component';
 import { NipHeaderComponent } from './nip-header/nip-header.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
+import { SignupService } from './signup/signup.service';
+import { LoginService } from './login/login.service';
 
 @NgModule({
   declarations: [
@@ -34,14 +39,15 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpModule,
     AppRoutingModule,
     FontAwesomeModule,
     NgbModule,
     SharedModule,
-    LoggedModule
+    LoggedModule,
+    FlashMessagesModule.forRoot()
   ],
-  providers: [
-  ],
+  providers: [SignupService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -37,9 +37,10 @@
                 </div>
               </div>
 
-              <div class="row form-group pb-3">
+              <div class="row form-group pb-3" [ngClass]="{ 'has-error' : email.hasError('emailTaken') }">
                 <div class="col">
                   <label for="lastName">{{'lastName' | labels: 'LABELS' : language : labelsFile}}</label>
+                  <span *ngIf="email.hasError('emailTaken')" class="username-email-taken">Email is taken</span>
                   <input
                     type="text"
                     class="form-control"

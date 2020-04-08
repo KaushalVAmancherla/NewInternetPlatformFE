@@ -15,6 +15,10 @@ import { faEye, faEyeSlash, faCheck, IconDefinition } from '@fortawesome/free-so
 import { MustMatchValidation } from '../shared/validators/must-match.validator';
 import { ModalConfig } from '../shared/models/modal-config';
 
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { first } from 'rxjs/operators';
+
+
 /**
  * User registration page
  */
@@ -27,13 +31,9 @@ import { ModalConfig } from '../shared/models/modal-config';
 export class SignupComponent extends BaseComponent implements OnInit, OnDestroy {
 
   private unsubscribe: Subject<void> = new Subject<void>();
-
   signupForm: FormGroup;
-
   pswIcon: IconDefinition = faEyeSlash;
-
   pswType: string = 'password';
-
   msgErrorService: string = '';
 
   @ViewChild('registerationModal', { static: false }) private registrationModal: ModalComponent;
@@ -46,7 +46,8 @@ export class SignupComponent extends BaseComponent implements OnInit, OnDestroy 
     protected userInfoService: UserInfoService,
     private modalService: NgbModal,
     private signupService: SignupService,
-    private labelsPipe: LabelsPipe
+    private labelsPipe: LabelsPipe,
+    private flashMessage: FlashMessagesService
   ) {
     super(userInfoService);
   }
@@ -76,7 +77,7 @@ export class SignupComponent extends BaseComponent implements OnInit, OnDestroy 
         updateOn: 'blur'
       }),
       username: new FormControl('', { // TODO Add unique validator
-        validators: [Validators.required, Validators.minLength(6), Validators.maxLength(16), Validators.pattern(Utils.CHARSET_NAME_REGEX)],
+        validators: [Validators.required, Validators.minLength(6), Validators.maxLength(16),Validators.pattern(Utils.CHARSET_NAME_REGEX)],
         updateOn: 'blur'
       }),
       email: new FormControl('', { // TODO Add unique validator
@@ -88,6 +89,7 @@ export class SignupComponent extends BaseComponent implements OnInit, OnDestroy 
     }, {
       validator: MustMatchValidation('password', 'confirmPassword')
     });
+
   }
 
   checkPasswords(group: FormGroup): void {
@@ -115,33 +117,25 @@ export class SignupComponent extends BaseComponent implements OnInit, OnDestroy 
    * Register a new User
    */
   onSubmit(): void {
-    this.msgErrorService = null;
-    if (this.signupForm.valid) {
-      const user = {
-        firstName: this.signupForm.value.firstName,
-        lastName: this.signupForm.value.lastName,
-        username: this.signupForm.value.username,
-        email: this.signupForm.value.email,
-        password: this.signupForm.value.password,
-        password_retype: this.signupForm.value.confirmPassword
-      };
+      if(this.signupForm.valid)
+      {
+            this.signupService.signup(this.signupForm.value)
+              .pipe(first())
+                  .subscribe(
+                    data => {
+                      this.flashMessage.show('You are now registered', {cssClass: 'alert-success', timeout: 3000});
+                      this.router.navigate(['/login']);
+                  },
+                    error => {
+                      this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+                      
 
-      this.signupService.signup(user)
-        .pipe(takeUntil(this.unsubscribe))
-        .subscribe(
-          data => {
-            if (data && data.data && data.data.message) {
-              this.registerationModalOptions.description = data.data.message;
-              this.registrationModal.open();
-            }
-          },
-          error => {
-            this.msgErrorService = error;
-          });
-
-    } else {
-      Utils.validateForm(this.signupForm);
-    }
+                    this.router.navigate(['/signup']);
+            });
+      }else
+      {
+        this.flashMessage.show('Invalid Form - Incorrect Field(s)', {cssClass: 'alert-danger', timeout: 3000});
+      }
   }
 
   onReset(): void {
